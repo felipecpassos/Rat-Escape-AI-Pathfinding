@@ -4,13 +4,14 @@ import math
 
 
 
-class Uniform_Cost:
+class A_Star:
  
     def __init__(self):
         self.matrix = defaultdict(list)
         self.graph = defaultdict(list)
         self.X = 0
         self.Y = 0
+        self.Y_position = (0,0)
         self.constant = 0
  
     def add_weighted_edge(self,u,v,w):
@@ -19,8 +20,8 @@ class Uniform_Cost:
     def append_H_value(self, H_value):
         self.H.append(H_value)
 
-    def uniform_cost(self):
-        pi = self.uniform_cost_procedure(self.X)
+    def a_star(self):
+        pi = self.a_star_procedure(self.X)
 
         path = []
         path.append(self.Y)
@@ -33,12 +34,21 @@ class Uniform_Cost:
 
         # return return_path
 
-    def uniform_cost_procedure(self, x):
+    def a_star_procedure(self, x):
+        F = []
+        for i in range(0, (max(self.graph)+1)):
+            F.append(math.inf)
+        F[x] = 0
 
         G = []
         for i in range(0, (max(self.graph) + 1)):
             G.append(math.inf)
         G[x] = 0
+
+        H = []
+        for i in range(0, (max(self.graph) + 1)):
+            H.append(math.inf)
+        H[x] = 0
 
         last = [-1] * (max(self.graph) + 1)
 
@@ -59,7 +69,13 @@ class Uniform_Cost:
                 current_distance = visit_weight + G[queue_node]
                 if current_distance < G[visit_node]:
                     G[visit_node] = current_distance
+                    print("")
+                    visit_node_position =  (math.floor(visit_node / self.constant), visit_node % self.constant)
+                    heuristic = math.sqrt( pow((self.Y_position[0] - visit_node_position[0]), 0) + math.pow(self.Y_position[1] - visit_node_position[1],2))
+                    F[visit_node] = G[visit_node] + heuristic
+                    print("Visit node:", visit_node)
+                    print("Heuristica:", heuristic)
                     last[visit_node] = queue_node
-                    queue.insert((G[visit_node], visit_node))
+                    queue.insert((F[visit_node], visit_node))
 
         return last

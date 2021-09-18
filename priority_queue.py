@@ -1,4 +1,7 @@
 # Modified implementation of PriorityQueue using tuple as value
+import math
+
+
 class PriorityQueue(object):
     def __init__(self):
         self.queue = []
@@ -20,7 +23,7 @@ class PriorityQueue(object):
             min = 0
             for i in range(len(self.queue)):
                 # acessing the second element ([1]) in the tuple: the weight of the node
-                if self.queue[i][1] < self.queue[min][1]:
+                if self.queue[i][1] > self.queue[min][1]:
                     min = i
             item = self.queue[min]
             del self.queue[min]
