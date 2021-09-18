@@ -71,10 +71,11 @@ class A_Star:
                     G[visit_node] = current_distance
                     print("")
                     visit_node_position =  (math.floor(visit_node / self.constant), visit_node % self.constant)
-                    heuristic = math.sqrt( pow((self.Y_position[0] - visit_node_position[0]), 0) + math.pow(self.Y_position[1] - visit_node_position[1],2))
+                    heuristic = math.sqrt( pow((self.Y_position[0] - visit_node_position[0]), 2) + math.pow(self.Y_position[1] - visit_node_position[1],2))
                     F[visit_node] = G[visit_node] + heuristic
                     print("Visit node:", visit_node)
                     print("Heuristica:", heuristic)
+                    print("F[",visit_node,"]: ", F[visit_node])
                     last[visit_node] = queue_node
                     queue.insert((F[visit_node], visit_node))
 
