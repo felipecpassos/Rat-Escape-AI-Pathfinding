@@ -22,7 +22,7 @@ class PriorityQueue(object):
         try:
             min = 0
             for i in range(len(self.queue)):
-                # acessing the second element ([1]) in the tuple: the weight of the node
+                # acessing the second element ([0]) in the tuple: the heuristic of the node
                 if self.queue[i][0] < self.queue[min][0]:
                     min = i
             item = self.queue[min]
