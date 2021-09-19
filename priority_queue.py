@@ -16,14 +16,14 @@ class PriorityQueue(object):
     # for inserting an element in the queue
     def insert(self, data):
         self.queue.append(data)
-  
+    
     # for popping an element based on Priority
-    def delete(self):
+    def delete(self, teste):
         try:
             min = 0
             for i in range(len(self.queue)):
-                # acessing the second element ([1]) in the tuple: the weight of the node
-                if self.queue[i][1] > self.queue[min][1]:
+                # acessing the second element ([0]) in the tuple: the heuristic of the node
+                if self.queue[i][teste] < self.queue[min][teste]:
                     min = i
             item = self.queue[min]
             del self.queue[min]
@@ -34,4 +34,4 @@ class PriorityQueue(object):
 
     def clear(self):
         while not self.isEmpty():
-            self.delete()
+            self.delete(0)
