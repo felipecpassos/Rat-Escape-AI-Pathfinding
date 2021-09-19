@@ -8,11 +8,11 @@ from uniform_cost import Uniform_Cost
 size = 5
 
 matrix = [
-    ["X", "-", "-", "#", "Y"],
+    ["X", "-", "-", "-", "-"],
     ["-", "-", "-", "-", "-"],
     ["-", "-", "-", "-", "-"],
-    ["-", "-", "-", "-", "-"],
-    ["-", "-", "-", "-", "-"]
+    ["#", "-", "-", "-", "-"],
+    ["Y", "-", "-", "-", "-"]
 ]
 
 g = A_Star()
@@ -67,8 +67,18 @@ if not error:
             print(g.matrix[i][j], end=" ")
         print()
     
+#clear queue (confirmar se vai precisar)
 
+# new algorithm
 g = Uniform_Cost()
+#clear matrix
+matrix = [
+    ["X", "-", "-", "-", "-"],
+    ["-", "-", "-", "-", "-"],
+    ["-", "-", "-", "-", "-"],
+    ["#", "-", "-", "-", "-"],
+    ["Y", "-", "-", "-", "-"]
+]
 error = False
 g.constant = size
 

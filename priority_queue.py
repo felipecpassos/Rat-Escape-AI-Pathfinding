@@ -18,12 +18,12 @@ class PriorityQueue(object):
         self.queue.append(data)
     
     # for popping an element based on Priority
-    def delete(self, type):
+    def delete(self, teste):
         try:
             min = 0
             for i in range(len(self.queue)):
                 # acessing the second element ([0]) in the tuple: the heuristic of the node
-                if self.queue[i][type] < self.queue[min][type]:
+                if self.queue[i][teste] < self.queue[min][teste]:
                     min = i
             item = self.queue[min]
             del self.queue[min]
