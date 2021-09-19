@@ -1,5 +1,6 @@
 
 import time
+from copy import deepcopy
 from datetime import timedelta
 
 from a_star import A_Star
@@ -7,18 +8,7 @@ from uniform_cost import Uniform_Cost
 
 maze_size = 8
 
-matrix_a_star = [
-    ["X", "-", "-", "-", "-", "-", "-", "-"],
-    ["-", "-", "-", "-", "-", "-", "-", "-"],
-    ["-", "-", "-", "-", "-", "-", "-", "-"],
-    ["#", "-", "-", "-", "-", "-", "-", "-"],
-    ["-", "-", "-", "-", "-", "-", "-", "-"],
-    ["-", "-", "-", "-", "-", "-", "-", "-"],
-    ["-", "-", "-", "-", "-", "-", "-", "-"],
-    ["Y", "-", "-", "-", "-", "-", "-", "-"]
-]
-
-matrix_uniform_cost = [
+matrix_input = [
     ["X", "-", "-", "-", "-", "-", "-", "-"],
     ["-", "-", "-", "-", "-", "-", "-", "-"],
     ["-", "-", "-", "-", "-", "-", "-", "-"],
@@ -33,10 +23,10 @@ a_star = A_Star()
 uniform_cost = Uniform_Cost()
 
 a_star.constant = maze_size
-a_star.matrix = matrix_a_star[:]
+a_star.matrix = deepcopy(matrix_input)
 
 uniform_cost.constant = maze_size
-uniform_cost.matrix = matrix_uniform_cost[:]
+uniform_cost.matrix = deepcopy(matrix_input)
 
 error = False
 
