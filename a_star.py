@@ -9,6 +9,7 @@ class A_Star:
     def __init__(self):
         self.matrix = defaultdict(list)
         self.graph = defaultdict(list)
+        self.visited_list = []
         self.X = 0
         self.Y = 0
         self.Y_position = (0,0)
@@ -55,6 +56,7 @@ class A_Star:
         queue = PriorityQueue()
 
         queue.insert((0, x))
+        self.visited_list.append(x)
  
         while not queue.isEmpty():
 
@@ -62,20 +64,24 @@ class A_Star:
             
             queue_node = x[1]
 
+            if (queue_node == self.Y):
+                # queue.clear()
+                break
             # looking at the neighboors
             for i in self.graph[queue_node]:
                 visit_node = i.get("node")
                 visit_weight = i.get("weight")
                 current_distance = visit_weight + G[queue_node]
                 if current_distance < G[visit_node]:
+                    self.visited_list.append(visit_node)
                     G[visit_node] = current_distance
-                    print("")
+                    # print("")
                     visit_node_position =  (math.floor(visit_node / self.constant), visit_node % self.constant)
                     heuristic = math.sqrt( pow((self.Y_position[0] - visit_node_position[0]), 2) + math.pow(self.Y_position[1] - visit_node_position[1],2))
                     F[visit_node] = G[visit_node] + heuristic
-                    print("Visit node:", visit_node)
-                    print("Heuristica:", heuristic)
-                    print("F[",visit_node,"]: ", F[visit_node])
+                    # print("Visit node:", visit_node)
+                    # print("Heuristica:", heuristic)
+                    # print("F[",visit_node,"]: ", F[visit_node])
                     last[visit_node] = queue_node
                     queue.insert((F[visit_node], visit_node))
 

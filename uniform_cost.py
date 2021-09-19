@@ -9,6 +9,7 @@ class Uniform_Cost:
     def __init__(self):
         self.matrix = defaultdict(list)
         self.graph = defaultdict(list)
+        self.visited_list = []
         self.X = 0
         self.Y = 0
         self.constant = 0
@@ -45,6 +46,8 @@ class Uniform_Cost:
         queue = PriorityQueue()
 
         queue.insert((0, x))
+
+        self.visited_list.append(x)
  
         while not queue.isEmpty():
 
@@ -52,12 +55,17 @@ class Uniform_Cost:
             
             queue_node = x[1]
 
+            if (queue_node == self.Y):
+                queue.clear()
+                break
+
             # looking at the neighboors
             for i in self.graph[queue_node]:
                 visit_node = i.get("node")
                 visit_weight = i.get("weight")
                 current_distance = visit_weight + G[queue_node]
                 if current_distance < G[visit_node]:
+                    self.visited_list.append(visit_node)
                     G[visit_node] = current_distance
                     last[visit_node] = queue_node
                     queue.insert((G[visit_node], visit_node))
