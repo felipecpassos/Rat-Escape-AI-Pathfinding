@@ -58,7 +58,7 @@ class A_Star:
  
         while not queue.isEmpty():
 
-            x = queue.delete()
+            x = queue.delete(0)
             
             queue_node = x[1]
 

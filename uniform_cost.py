@@ -48,7 +48,7 @@ class Uniform_Cost:
  
         while not queue.isEmpty():
 
-            x = queue.delete()
+            x = queue.delete(1)
             
             queue_node = x[1]
 
